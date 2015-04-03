@@ -1,0 +1,17 @@
+[DockerLogInput]
+decoder = "TutumDecoder"
+
+[TutumDecoder]
+auth = "!!TUTUM_AUTH!!"
+
+[ESJsonEncoder]
+index = "hekad-%{2006.01.02}"
+es_index_from_timestamp = true
+type_name = "%{Logger}"
+
+[ElasticSearchOutput]
+message_matcher = "TRUE"
+server = "http://es-server:9200"
+flush_interval = 5000
+flush_count = 10
+encoder = "ESJsonEncoder"
